@@ -1,5 +1,6 @@
 const express = require('express');
-const app = express();
+const app = express() , cors;
+const cors = require('cors')
 const porta = 8080;
 
 app.use(express.urlencoded({ extended: true }));

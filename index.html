@@ -27,11 +27,26 @@
     </form>
 
 
-    <form action="http://localhost:8080/cartas/busca" method="get">
+    <form id="form">
         <label>Buscar:</label>
         <input type="number" name="id" id="">
         <button type="submit">Achar</button>
     </form>
+
+    <script>
+        const formulario = document.getElementById("form")
+        formulario.addEventListener('submit', function(event){
+            event.preventDefault()
+
+            fetch('http://localhost:8080/cartas')
+            .then(res => res.json()
+            .then(dados => {
+                console.log("Dados adicionados ao servidor, e eles são ", dados)
+            }))
+        })
+        .catch(erro => {console.error("DEU ERRO", erro)})
+        
+    </script>
 </body>
 
 </html>
