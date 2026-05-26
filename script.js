@@ -1,11 +1,11 @@
 const express = require('express');
-const app = express() , cors;
-const cors = require('cors')
+const cors = require('cors'); // 1. Importa o módulo CORS
+const app = express();
 const porta = 8080;
 
+app.use(cors()); // 2. Libera o acesso para qualquer origem (resolve o erro do navegador)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 // Nosso Banco em Memória
 let colecaoCartas = [
     { id: 1, nome: "Charizard", expansao: "Phantalmal Flames", hp: 150 },
