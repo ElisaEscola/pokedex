@@ -57,6 +57,29 @@ app.get('/cartas/:id', (req, res) => {
     res.status(200).json(cartaEncontrada);
 });
 
+
+app.delete('cartas/deletar', (req, res) => {
+    let IdDeletar = parseInt(req.body.id);
+    let indexCarta = colecaoCartas.findIndex(carta => carta.id === IdDeletar)
+
+    if (indexCarta === -1) {
+        return
+        res.status(404) .json({
+            sucesso: false,
+            erro: "carta não encontrada"
+        })
+    }
+
+    colecaoCartas.splice(indexCarta , 1) 
+    res.status(200).json ({
+        sucesso:"Carta deletada com sucesso",
+        erro:false
+    })
+});
+
 app.listen(porta, () => {
     console.log(`Catálogo rodando na porta ${porta}`);
 });
+
+
+
