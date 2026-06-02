@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
     <title>abazinha fofas</title>
 </head>
 
@@ -11,53 +12,37 @@
     <h1>Pokedex</h1>
     <form action="http://localhost:8080/cartas/nova" method="post">
 
-        <label> nome:</label>
-        <br>
+        <label> nome</label>
         <input type="text" name="nome" id="nome">
-        <br>
-        <label> expansão:</label>
-        <br>
+
+        <label> expansão</label>
         <input type="text" name="expansao" id="expansao">
 
-        <br>
-        <label> hp:</label>
-        <br>
+        <label> hp</label>
         <input type="number" name="hp" id="hp">
-        <br>
 
-        <br>
+
+
         <button type="submit"> Enviar</button>
     </form>
-    <br>
-
 
 
     <form id="form">
         <label>Buscar:</label>
-        <br>
         <input type="number" name="id" id="number">
-        <br><br>
         <button type="submit">Achar</button>
-
     </form>
 
     <script>
         const formulario = document.getElementById("form")
-
         formulario.addEventListener('submit', function (event) {
             event.preventDefault()
 
-            const input = document.getElementById("number");
-            const idBuscado = input.value; 
-
-            fetch(`http://localhost:8080/cartas/${idBuscado}`)
+            fetch('http://localhost:8080/cartas')
                 .then(res => res.json())
                 .then(dados => {
-                    console.log("Detalhes, e eles são ", dados)
-                })
-                .catch(erro => {
-                    console.error("DEU ERRO", erro)
-                })
+                    console.log("Dados adicionados ao servidor, e eles são ", dados)
+                }).catch(erro => { console.error("DEU ERRO", erro) })
         })
 
     </script>
